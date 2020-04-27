@@ -1,6 +1,10 @@
 # PoetryRecite
 古诗词学习app 包括Android前端+SSM后端
 
+开发前后端分离：
+Android使用IDE： Android Studio
+Java使用IDE： Eclipse
+
 一、项目简介：
   本课题是一个基于Android（安卓）系统的古诗词背诵APP（application应用）。该APP的主要任务是方便人们在线背诵记忆自己感兴趣的古诗词，并且进行背诵检测，还有自动生成古诗功能。APP的核心是背诵古诗词并对用户背诵情况的检测，促使用户学习古诗词，培养出用户对古诗词的兴趣。
 

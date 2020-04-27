@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjr.dao.TestMapper">
+  <resultMap id="BaseResultMap" type="com.xjr.model.Test">
+    <id column="testid" jdbcType="INTEGER" property="testid" />
+    <result column="typeid" jdbcType="INTEGER" property="typeid" />
+    <result column="testcontent" jdbcType="VARCHAR" property="testcontent" />
+    <result column="optionA" jdbcType="VARCHAR" property="optiona" />
+    <result column="optionB" jdbcType="VARCHAR" property="optionb" />
+    <result column="optionC" jdbcType="VARCHAR" property="optionc" />
+    <result column="optionD" jdbcType="VARCHAR" property="optiond" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="explaination" jdbcType="VARCHAR" property="explaination" />
+    <result column="tips" jdbcType="VARCHAR" property="tips" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    testid, typeid, testcontent, optionA, optionB, optionC, optionD, answer, explaination, 
+    tips
+  </sql>
+  <select id="selectByExample" parameterType="com.xjr.model.TestExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test
+    where testid = #{testid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test
+    where testid = #{testid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xjr.model.TestExample">
+    delete from test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xjr.model.Test">
+    insert into test (testid, typeid, testcontent, 
+      optionA, optionB, optionC, 
+      optionD, answer, explaination, 
+      tips)
+    values (#{testid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, #{testcontent,jdbcType=VARCHAR}, 
+      #{optiona,jdbcType=VARCHAR}, #{optionb,jdbcType=VARCHAR}, #{optionc,jdbcType=VARCHAR}, 
+      #{optiond,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{explaination,jdbcType=VARCHAR}, 
+      #{tips,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xjr.model.Test">
+    insert into test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testid != null">
+        testid,
+      </if>
+      <if test="typeid != null">
+        typeid,
+      </if>
+      <if test="testcontent != null">
+        testcontent,
+      </if>
+      <if test="optiona != null">
+        optionA,
+      </if>
+      <if test="optionb != null">
+        optionB,
+      </if>
+      <if test="optionc != null">
+        optionC,
+      </if>
+      <if test="optiond != null">
+        optionD,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="explaination != null">
+        explaination,
+      </if>
+      <if test="tips != null">
+        tips,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testid != null">
+        #{testid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="testcontent != null">
+        #{testcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="optiona != null">
+        #{optiona,jdbcType=VARCHAR},
+      </if>
+      <if test="optionb != null">
+        #{optionb,jdbcType=VARCHAR},
+      </if>
+      <if test="optionc != null">
+        #{optionc,jdbcType=VARCHAR},
+      </if>
+      <if test="optiond != null">
+        #{optiond,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="explaination != null">
+        #{explaination,jdbcType=VARCHAR},
+      </if>
+      <if test="tips != null">
+        #{tips,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xjr.model.TestExample" resultType="java.lang.Long">
+    select count(*) from test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update test
+    <set>
+      <if test="record.testid != null">
+        testid = #{record.testid,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeid != null">
+        typeid = #{record.typeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.testcontent != null">
+        testcontent = #{record.testcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optiona != null">
+        optionA = #{record.optiona,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionb != null">
+        optionB = #{record.optionb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionc != null">
+        optionC = #{record.optionc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optiond != null">
+        optionD = #{record.optiond,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null">
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.explaination != null">
+        explaination = #{record.explaination,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tips != null">
+        tips = #{record.tips,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update test
+    set testid = #{record.testid,jdbcType=INTEGER},
+      typeid = #{record.typeid,jdbcType=INTEGER},
+      testcontent = #{record.testcontent,jdbcType=VARCHAR},
+      optionA = #{record.optiona,jdbcType=VARCHAR},
+      optionB = #{record.optionb,jdbcType=VARCHAR},
+      optionC = #{record.optionc,jdbcType=VARCHAR},
+      optionD = #{record.optiond,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      explaination = #{record.explaination,jdbcType=VARCHAR},
+      tips = #{record.tips,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xjr.model.Test">
+    update test
+    <set>
+      <if test="typeid != null">
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="testcontent != null">
+        testcontent = #{testcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="optiona != null">
+        optionA = #{optiona,jdbcType=VARCHAR},
+      </if>
+      <if test="optionb != null">
+        optionB = #{optionb,jdbcType=VARCHAR},
+      </if>
+      <if test="optionc != null">
+        optionC = #{optionc,jdbcType=VARCHAR},
+      </if>
+      <if test="optiond != null">
+        optionD = #{optiond,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="explaination != null">
+        explaination = #{explaination,jdbcType=VARCHAR},
+      </if>
+      <if test="tips != null">
+        tips = #{tips,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where testid = #{testid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xjr.model.Test">
+    update test
+    set typeid = #{typeid,jdbcType=INTEGER},
+      testcontent = #{testcontent,jdbcType=VARCHAR},
+      optionA = #{optiona,jdbcType=VARCHAR},
+      optionB = #{optionb,jdbcType=VARCHAR},
+      optionC = #{optionc,jdbcType=VARCHAR},
+      optionD = #{optiond,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      explaination = #{explaination,jdbcType=VARCHAR},
+      tips = #{tips,jdbcType=VARCHAR}
+    where testid = #{testid,jdbcType=INTEGER}
+  </update>
+  
+  <!--查询所有试题  -->
+  <select id="selectAll" parameterType="com.xjr.model.Test" resultMap="BaseResultMap">
+  	select * from test
+  </select>
+  
+  <!--按试题类别查询试题  -->
+  <select id="selectTestByTypeId" parameterType="com.xjr.model.Test" resultMap="BaseResultMap">
+  	select * from test where typeid = #{typeid,jdbcType=INTEGER}
+  </select>
+  
+  <!--按testcontent和typeid模糊查询试题  -->
+  <!--select * from test where testcontent LIKE '%李白%' AND typeid=2  -->
+  <select id="selectByContentAndType" parameterType="com.xjr.model.Test" resultMap="BaseResultMap">
+  	select * from test where testcontent LIKE concat('%',#{0},'%') and typeid = #{1}
+  	<!-- select * from test where testcontent LIKE concat('%',#{testcontent,jdbcType=VARCHAR},'%') and typeid = #{typeid,jdbcType=INTEGER} 报错testcontent not found！-->
+  </select>
+  
+  <!--getTestContent查询所有试题内容  返回值是String结果集-->
+  <select id="getTestContent" resultType="java.lang.String">
+  	select testcontent from test
+  </select>
+  
+</mapper>

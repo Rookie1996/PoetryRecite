@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xjr.poetryrecite">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="org.litepal.LitePalApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- .activity.SplashActivity -->
+        <activity android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.TestAnswerActivity" />
+        <activity android:name=".activity.ReciteActivity" />
+        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.MenuActivity" />
+        <activity android:name=".activity.TestGradeActivity" />
+        <activity android:name=".activity.GenActivity" />
+        <activity android:name=".activity.CreateDBActivity" />
+        <activity android:name=".activity.GradeActivity"></activity>
+    </application>
+
+</manifest>

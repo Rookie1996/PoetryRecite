@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/sv"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="#ffffffff" >-->
+
+    <!--<com.sk.view.TextViewVertical-->
+        <!--android:id="@+id/tv"-->
+        <!--textSize="60"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="500dp"-->
+        <!--android:text="Hello World!" />-->
+
+    <!--</HorizontalScrollView>-->
+
+    <TextView
+        android:id="@+id/poetry_tv"
+        android:layout_width="match_parent"
+        android:maxLines = "100"
+        android:scrollbars = "vertical"
+        android:layout_height="280dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/poetry_details"
+        android:visibility="visible"
+        android:maxLines = "100"
+        android:scrollbars = "vertical"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp" />
+
+</LinearLayout>

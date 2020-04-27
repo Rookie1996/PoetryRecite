@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjr.dao.PoetryMapper">
+  <resultMap id="BaseResultMap" type="com.xjr.model.Poetry">
+    <id column="poetryid" jdbcType="INTEGER" property="poetryid" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="dynasty" jdbcType="VARCHAR" property="dynasty" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="theme" jdbcType="VARCHAR" property="theme" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    poetryid, subject, author, dynasty, content, detail, theme
+  </sql>
+  <select id="selectByExample" parameterType="com.xjr.model.PoetryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from poetry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poetry
+    where poetryid = #{poetryid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poetry
+    where poetryid = #{poetryid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xjr.model.PoetryExample">
+    delete from poetry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xjr.model.Poetry">
+    insert into poetry (poetryid, subject, author, 
+      dynasty, content, detail, 
+      theme)
+    values (#{poetryid,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{dynasty,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{theme,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xjr.model.Poetry">
+    insert into poetry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="poetryid != null">
+        poetryid,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="dynasty != null">
+        dynasty,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="theme != null">
+        theme,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="poetryid != null">
+        #{poetryid,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="dynasty != null">
+        #{dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        #{theme,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xjr.model.PoetryExample" resultType="java.lang.Long">
+    select count(*) from poetry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update poetry
+    <set>
+      <if test="record.poetryid != null">
+        poetryid = #{record.poetryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.subject != null">
+        subject = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null">
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dynasty != null">
+        dynasty = #{record.dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theme != null">
+        theme = #{record.theme,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update poetry
+    set poetryid = #{record.poetryid,jdbcType=INTEGER},
+      subject = #{record.subject,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      dynasty = #{record.dynasty,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
+      theme = #{record.theme,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xjr.model.Poetry">
+    update poetry
+    <set>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="dynasty != null">
+        dynasty = #{dynasty,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where poetryid = #{poetryid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xjr.model.Poetry">
+    update poetry
+    set subject = #{subject,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      dynasty = #{dynasty,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR}
+    where poetryid = #{poetryid,jdbcType=INTEGER}
+  </update>
+  
+  <!--查询所有诗歌  -->
+  <select id="selectAll" parameterType="com.xjr.model.Poetry" resultMap="BaseResultMap">
+  	select * from poetry
+  </select>
+</mapper>

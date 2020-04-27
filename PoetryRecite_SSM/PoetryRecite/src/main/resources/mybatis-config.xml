@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+	</plugins>
+	<mappers>
+		<mapper resource="com/xjr/mapping/AdminMapper.xml" />
+		<mapper resource="com/xjr/mapping/UserMapper.xml" />
+		<mapper resource="com/xjr/mapping/TestMapper.xml" />
+		<mapper resource="com/xjr/mapping/TestypeMapper.xml" />
+		<mapper resource="com/xjr/mapping/PoetryMapper.xml" />
+		<mapper resource="com/xjr/mapping/UserAnswerMapper.xml" />
+		<mapper resource="com/xjr/mapping/GradeViewMapper.xml" />
+		<mapper resource="com/xjr/mapping/SumGradeViewMapper.xml" />
+	</mappers>
+</configuration> 

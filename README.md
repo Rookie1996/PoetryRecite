@@ -2,7 +2,7 @@
 古诗词学习app 包括Android前端+SSM后端
 
 开发前后端分离：
-Android使用IDE： Android Studio
+Android使用IDE： Android Studio;
 Java使用IDE： Eclipse
 
 一、项目简介：

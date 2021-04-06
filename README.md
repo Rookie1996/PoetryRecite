@@ -27,3 +27,9 @@ python部分：
 1、TensorFlow   LSTM
 2、Jython
 
+三、参考文献
+后端管理系统开发，参考SSM框架视频：
+https://www.bilibili.com/video/av35988777?from=search&seid=1394276140344891694
+移动端古诗检测功能：
+https://blog.csdn.net/qq_27248989/article/details/80647928#comments
+
